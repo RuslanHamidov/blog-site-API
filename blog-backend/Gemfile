@@ -1,0 +1,7 @@
+# Gemfile
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'sinatra-contrib'  # Provides helpers like JSON serialization
+gem 'sequel'           # Example ORM
+gem 'sqlite3'          # Example database

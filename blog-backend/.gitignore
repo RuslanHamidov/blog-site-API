@@ -1,0 +1,35 @@
+# Ignore bundler config
+/.bundle/
+
+# Ignore log files
+/log/*
+!/log/.keep
+
+# Ignore temporary files
+/tmp/
+*.tmp
+
+# Ignore database files
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/*.log
+
+# Ignore environment files
+*.env
+
+# Ignore dependencies and package manager files
+/vendor/
+Gemfile.lock
+
+# Ignore test coverage reports
+/coverage/
+
+# Ignore IDE files
+/.idea/
+/.vscode/
+/*.sublime-project
+/*.sublime-workspace
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
