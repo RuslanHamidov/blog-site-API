@@ -33,3 +33,6 @@ Gemfile.lock
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
+
+#ignore database file
+db/*.sqlite3
