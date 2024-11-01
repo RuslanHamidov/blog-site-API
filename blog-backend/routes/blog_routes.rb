@@ -1,9 +1,15 @@
 require 'sinatra'
 require 'sinatra/json'
-
+require 'sinatra/activerecord'
 
 db_example = [{id: 1, title: "sample title", body: "this is body of first post"},
-              {id: 2, title: "title2", body: "this is body of second post"}
+              {id: 2, title: "title2", body: "this is body of second post"},
+              {id: 3, title: "title2", body: "this is body of second post"},
+              {id: 4, title: "title2", body: "this is body of second post"},
+              {id: 5, title: "title2", body: "this is body of second post"},
+              {id: 6, title: "title2", body: "this is body of second post"},
+              {id: 7, title: "title2", body: "this is body of second post"},
+              {id: 8, title: "title2", body: "this is body of second post"}
               ]
 
 #get request body
@@ -15,6 +21,16 @@ end
 #ensure content_type is json
 before do
   content_type :json
+end
+
+#main page where 5 latest posts are returned
+get '/' do
+  latest_posts = []
+  db_example.reverse_each do |post|
+    latest_posts.push(post)
+    break if latest_posts.length == 5
+  end
+  json latest_posts
 end
 
 #show all posts
