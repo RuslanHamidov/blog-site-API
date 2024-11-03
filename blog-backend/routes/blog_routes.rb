@@ -1,7 +1,25 @@
 require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/activerecord'
+require 'sinatra/namespace'
+require 'dotenv/load'
 
+
+configure do
+  set :username, ENV['USERNAME']
+  set :password, ENV['PASSWORD']
+end
+
+helpers do
+  def protected!
+    halt 401, json(message: "Unathorized") unless authorized?
+  end
+
+  def authorized?
+    @auth ||= Rack::Auth::Basic::Request.new(request.env)
+    @auth.provided? && @auth.basic? && @auth.credentials == [settings.username, settings.password]
+  end
+end
 
 #ensure content_type is json
 before do
@@ -25,23 +43,41 @@ get '/posts/:id' do
   json post
 end
 
-#make new post
-post '/posts' do
-  post = Post.create(title: params[:title], body: params[:body])
-  json post
-end
+namespace "/admin" do
+  before do
+    protected!
+  end
 
-#edit post
-put '/posts/:id' do
-  post = Post.find(params[:id])
-  post.update(title: params[:title], body: params[:body])
-  post.save
-  redirect '/posts/' + params[:id]
-end
+  #show all posts
+  get '/posts' do
+    json Post.all
+  end
+  
+  #make new post
+  post '/posts' do
+    post = Post.create(title: params[:title], body: params[:body])
+    json post
+  end
 
-#delete particular post
-delete '/posts/:id' do
-  post = Post.find(params[:id])
-  post.destroy
-  redirect '/posts'
+  #edit post
+  put '/posts/:id' do
+    post = Post.find(params[:id])
+    if post
+      post.update(title: params[:title], body: params[:body])
+      redirect '/posts/' + params[:id]
+    else
+      halt 404, json(message: "Post not found")
+    end
+  end
+
+  #delete particular post
+  delete '/posts/:id' do
+    post = Post.find(params[:id])
+    if post
+      post.destroy
+      redirect '/posts'
+    else
+      halt 404, json(message: "Post not found")
+    end
+  end
 end

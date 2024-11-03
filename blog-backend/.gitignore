@@ -23,7 +23,6 @@ Gemfile.lock
 
 # Ignore test coverage reports
 /coverage/
-
 # Ignore IDE files
 /.idea/
 /.vscode/
@@ -36,3 +35,4 @@ Thumbs.db
 
 #ignore database file
 db/*.sqlite3
+.env

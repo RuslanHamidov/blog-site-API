@@ -6,3 +6,5 @@ gem 'sinatra-contrib'  # Provides helpers like JSON serialization
 gem 'sqlite3'          # Example database
 gem 'sinatra-activerecord'
 gem "rake"
+gem 'sinatra-contrib'
+gem 'dotenv'
