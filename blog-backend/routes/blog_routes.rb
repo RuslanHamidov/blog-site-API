@@ -10,11 +10,7 @@ end
 
 #main page where 5 latest posts are returned
 get '/' do
-  latest_posts = []
-  db_example.reverse_each do |post|
-    latest_posts.push(post)
-    break if latest_posts.length == 5
-  end
+  latest_posts = Post.order(created_at: :desc).limit(5)
   json latest_posts
 end
 
