@@ -9,3 +9,5 @@
 
 - **Admin Capabilities**: As an admin, you can create, edit, and delete posts.
 - **User Access**: Users can read posts but have read-only access.
+
+https://roadmap.sh/projects/blogging-platform-api
