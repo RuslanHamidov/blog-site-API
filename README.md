@@ -4,8 +4,6 @@
 
 - **Sinatra**: A DSL for quickly creating web applications in Ruby.
 - **SQLite**: A lightweight database for storing and managing data.
-- **Vue.js**: A progressive JavaScript framework for building user interfaces.
-- **Docker**: Used for containerizing and deploying the application (planned for future implementation).
 
 ## Features
 
