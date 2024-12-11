@@ -1,4 +1,6 @@
-# My Blogsite
+# Blogsite - API
+
+Blog API created with Ruby micro-framework Sinatra, you are free to add your frontend or new features
 
 ## Technologies Used
 
